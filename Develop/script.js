@@ -1,6 +1,21 @@
+// Steps to create password generator: 
+// asked to confirm if you want to select
+    // upper
+    // lower
+    // numbers
+    // special characters
+// asked to INPUT length of password 
+    // at least 8, no more than 128
+//input is validated and at least one character type should be selected
+//password is generated at RANDOM
+//password is displayed in an alert
+
+
+
+
 var generateBtn = document.querySelector("#generate");
 
-function generatePassword() {
+function generatePassword(length) {
     // data set 
     var letters = 'abcdefghijklmnopqrstuvwxyz';
     var numbers = '0123456789';
@@ -8,7 +23,8 @@ function generatePassword() {
     var upperLetters = letters.toUpperCase();
     var lowerLetters = letters.toLowerCase();
     var chooseFrom = '';
-    
+    var passwordLength = length; 
+
     var isUpperCase = confirm ('Would you like to use uppercase?');
     var isLowerCase = confirm ('Would you like to use lowercase?');
     var isNumber = confirm ('Would you like to use numbers?');
@@ -20,14 +36,14 @@ function generatePassword() {
         // use uppercase letters
         console.log ('uppercase')
       }
-      if (isLowercase){
+      else if (isLowercase){
         // use lowercase letters
         console.log ('lowercase')
       }
-      if (isNumber){
+      else if (isNumber){
         console.log ('number')
       }
-      if (isSpecial){
+      else if (isSpecial){
         console.log ('special')
       }
 
