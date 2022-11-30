@@ -11,8 +11,6 @@
 //password is displayed in an alert
 
 
-
-
 var generateBtn = document.querySelector("#generate");
 
 function generatePassword(length) {
@@ -24,7 +22,7 @@ function generatePassword(length) {
     var lowerLetters = letters.toLowerCase();
     var chooseFrom = '';
     var passwordLength = length; 
-
+    console.log(length);
     var isUpperCase = confirm ('Would you like to use uppercase?');
     var isLowerCase = confirm ('Would you like to use lowercase?');
     var isNumber = confirm ('Would you like to use numbers?');
@@ -33,26 +31,30 @@ function generatePassword(length) {
     // conditions
 
     if (isUpperCase){
-        // use uppercase letters
-        console.log ('uppercase')
+        chooseFrom += upperLetters;
       }
-      else if (isLowercase){
-        // use lowercase letters
-        console.log ('lowercase')
+      if (isLowerCase){
+        chooseFrom += lowerLetters;
       }
-      else if (isNumber){
-        console.log ('number')
+      if (isNumber){
+        chooseFrom += numbers;
       }
-      else if (isSpecial){
-        console.log ('special')
+      if (isSpecial){
+        chooseFrom += special;
       }
-
-    return '';
+       
+      
+      var random = Math.floor(Math.random() * chooseFrom.length);
+      console.log(random);
+      console.log(chooseFrom.length);
+      var password = '12345678';
+      return password;
 }
 
 // Write password to the #password input
 function writePassword() {
-    var password = generatePassword();
+    var passwordLength = prompt("Please input length of password between 8 and 128 characters.")
+    var password = generatePassword(passwordLength);
     var passwordText = document.querySelector("#password");
     
     passwordText.value = password;
