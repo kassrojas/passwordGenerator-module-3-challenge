@@ -31,10 +31,8 @@ function writePassword() {
     passwordText.value = password;
   }
 
-
-
 function generatePassword(passwordLength) {
-    // data set 
+    // defining variables, building data set
     var letters = 'abcdefghijklmnopqrstuvwxyz';
     var numbers = '0123456789';
     var special = '!#$%&()*+,-./:;<=>?@[\]^_`{|}~';
@@ -42,8 +40,7 @@ function generatePassword(passwordLength) {
     var lowerLetters = letters.toLowerCase();
     var chooseFrom = '';
     var password = '';
-    // var passwordLength = length; 
-    console.log(passwordLength);
+    // confirm returns a boolean value
     var isUpperCase = confirm ('Would you like to use uppercase?');
     var isLowerCase = confirm ('Would you like to use lowercase?');
     var isNumber = confirm ('Would you like to use numbers?');
@@ -52,33 +49,29 @@ function generatePassword(passwordLength) {
     // conditions
 
     if (isUpperCase){
-        console.log('isUpperCase');
         chooseFrom += upperLetters;
       }
       if (isLowerCase){
-        console.log('isLowerCase');
         chooseFrom += lowerLetters;
       }
       if (isNumber){
-        console.log('isNumber');
         chooseFrom += numbers;
       }
       if (isSpecial){
-        console.log('isSpecial');
         chooseFrom += special;
       }
+      // += means append; since chooseFrom in data set is an empty string, as the user choices are validated, chooseFrom character options are appended to the empty string. Creates a pool of characters to chooseFrom later
       
+      // if user doesn't select anything, function writePassword() will start over again
     if (!isUpperCase && !isLowerCase && !isNumber && !isSpecial){
         alert('You have chosen to not generate a password. Please try again.')
         writePassword();
     }
     
+    // think slot machine: starting at index 0, moving up by one index value, until passwordLength has been reached
     for (i = 0; i < passwordLength; i++){
-
         var random = Math.floor(Math.random() * chooseFrom.length);
         password += chooseFrom[random];
-        console.log(password);
-
     }
      
       return password;
