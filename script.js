@@ -14,21 +14,20 @@
 //password is displayed in an alert
 
 
-var generateBtn = document.querySelector("#generate");
+var generateBtn = document.querySelector('#generate');
 
 // Write password to the #password input
 function writePassword() {
-    var passwordLength = prompt("Please input a length of password between 8 and 128 characters.");
+    var passwordLength = parseInt(prompt("Please input a length of password between 8 and 128 characters."));
 
     if (passwordLength < 8 || passwordLength > 128){
         alert('Please input a length of password between 8 and 128 characters.');
         writePassword();
         return;
-
     } 
     
     var password = generatePassword(passwordLength);
-    var passwordText = document.querySelector("#password");
+    var passwordText = document.querySelector('#password');
     
     passwordText.value = password;
   }
@@ -42,6 +41,7 @@ function generatePassword(passwordLength) {
     var lowerLetters = letters.toLowerCase();
     var chooseFrom = '';
     var password = '';
+    var ensureCharacter = '';
     // confirm returns a boolean value
     var isUpperCase = confirm ('Would you like to use uppercase?');
     var isLowerCase = confirm ('Would you like to use lowercase?');
@@ -52,15 +52,23 @@ function generatePassword(passwordLength) {
 
     if (isUpperCase){
         chooseFrom += upperLetters;
+        var random = Math.floor(Math.random() * upperLetters.length);
+        ensureCharacter += upperLetters[random];
       }
       if (isLowerCase){
         chooseFrom += lowerLetters;
+        var random = Math.floor(Math.random() * lowerLetters.length);
+        ensureCharacter += lowerLetters[random];
       }
       if (isNumber){
         chooseFrom += numbers;
+        var random = Math.floor(Math.random() * numbers.length);
+        ensureCharacter += numbers[random];
       }
       if (isSpecial){
         chooseFrom += special;
+        var random = Math.floor(Math.random() * special.length);
+        ensureCharacter += special[random];
       }
       // += means append; since chooseFrom in data set is an empty string, as the user choices are validated, chooseFrom character options are appended to the empty string. Creates a pool of characters to chooseFrom later
       
@@ -70,7 +78,7 @@ function generatePassword(passwordLength) {
         writePassword();
     }
     
-    // think slot machine: starting at index 0, moving up by one index value, until passwordLength has been reached
+    // think slot machine// i = 0: starting at index 0, i++ : moving up by one index value, i < passwordLength : until passwordLength has been reached
     for (i = 0; i < passwordLength; i++){
         var random = Math.floor(Math.random() * chooseFrom.length);
         password += chooseFrom[random];
@@ -81,4 +89,4 @@ function generatePassword(passwordLength) {
 
 
   // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener('click', writePassword);
